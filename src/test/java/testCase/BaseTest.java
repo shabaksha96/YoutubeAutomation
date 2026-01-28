@@ -23,13 +23,17 @@ public class BaseTest {
         FirefoxProfile profile = new FirefoxProfile(new File(profilePath));
         FirefoxOptions options = new FirefoxOptions();
         options.setProfile(profile);
-
+        options.addArguments("--headless=new"); // Modern headless mode
+        options.addArguments("--window-size=1920,1080"); // Standard viewport
+        options.addArguments("--disable-gpu"); // Recommended for Windows/Linux
+        
 		switch (br) {
         case "chrome" -> driver = new ChromeDriver();
         case "firefox" -> driver = new FirefoxDriver(options);
         case "edge" -> driver = new EdgeDriver();
         default -> throw new IllegalArgumentException("Unsupported browser: " + br);
     }
+		
 		driver.get("https://www.youtube.com/");
 		driver.manage().window().fullscreen();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

@@ -141,7 +141,12 @@ public class ContentPage extends BasePage{
 		public String signInCheck()
 		{
 			String label = signIn.getAttribute("aria-label");
+			if(label.equals("Sign in"))
+			{
 			System.out.println("Signin option is found, so existing account is signed out");
+			return label;}
+			else
+			{System.out.println("Something wrong");}
 			return label;
 		}
 		
