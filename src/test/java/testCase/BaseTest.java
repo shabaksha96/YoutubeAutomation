@@ -31,7 +31,7 @@ public class BaseTest {
         default -> throw new IllegalArgumentException("Unsupported browser: " + br);
     }
 		driver.get("https://www.youtube.com/");
-		driver.manage().window().maximize();
+		driver.manage().window().fullscreen();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 	

@@ -64,7 +64,7 @@ public class HomePage extends BasePage{
 	@FindBy(xpath="//yt-list-item-view-model[@aria-label='Watch later, Private, Not selected']")
 	WebElement watchLaterIcon;
 	
-	@FindBy(xpath="//button[@aria-label='Mute']")
+	@FindBy(xpath="//volume-controls//button[contains(@aria-label,'ute')]")
 	WebElement mute;
 	
 	
@@ -141,6 +141,9 @@ public class HomePage extends BasePage{
 		Thread.sleep(1000);
 		watchLaterIcon.click();
 		mute.click();
+		Thread.sleep(1000);
+		mute.click();
+		
 	}
 	
 	

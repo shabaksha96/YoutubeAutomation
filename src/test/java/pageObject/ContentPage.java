@@ -13,6 +13,8 @@ public class ContentPage extends BasePage{
 		}
 		
 	//locators
+		
+		
 		@FindBy(xpath="//div[@id='actions']//like-button-view-model/toggle-button-view-model/button-view-model/button/yt-touch-feedback-shape[@class='yt-spec-touch-feedback-shape yt-spec-touch-feedback-shape--touch-response']/div[@class='yt-spec-touch-feedback-shape__fill']")
 		WebElement likeButton;
 		
@@ -52,8 +54,85 @@ public class ContentPage extends BasePage{
 		@FindBy(xpath="//ytd-button-renderer[@class='style-scope ytd-masthead']//a[@aria-label='Sign in']")
 		WebElement signIn;
 		
+		@FindBy(xpath="//button[@class='ytp-play-button ytp-button']")
+		WebElement playback;
+		
+		@FindBy(xpath="//button[@data-title-no-tooltip='Play']")
+		WebElement playButto;
+		
+		@FindBy(xpath="//button[@data-title-no-tooltip='Pause']")
+		WebElement pauseButton;
+		
+		@FindBy(xpath="//button[@class='ytp-volume-icon ytp-button']")
+		WebElement volButton;
+		
+		@FindBy(xpath="//button[contains(@aria-label, 'Subtitles')]")
+		WebElement sub;
+		
+		@FindBy(xpath="//button[@data-tooltip-title='Settings']")
+		WebElement setting;
+		
+		@FindBy(xpath="//div[contains(text(), 'Quality')]//parent::div[@class='ytp-menuitem']")
+		WebElement qualityOption;
+		
 		
 	//Methods
+		public void interuptSetting()
+		{
+			setting.click();
+			System.out.println("Setting selected");
+		}
+		
+		public void interuptVideo() throws InterruptedException
+		{
+			Thread.sleep(1000);
+			String playback_status = playback.getAttribute("data-tooltip-title");
+			if(playback_status.contains("Play"))
+			{
+				playButto.click();
+				System.out.println("Video is playing");
+			}
+			else if(playback_status.contains("Pause"))
+			{
+				pauseButton.click();
+				System.out.println("Video is paused");
+			}
+		}
+		
+		public void volume() throws InterruptedException
+		{
+			Thread.sleep(1000);
+			String vol_status = volButton.getAttribute("aria-label");
+			if(vol_status.contains("Unmute"))
+			{
+				System.out.println("Volume button click");
+				volButton.click();
+				System.out.println("Video playing with audio");
+			}
+			else if(vol_status.contains("Mute"))
+			{
+				System.out.println("Volume button click");
+				volButton.click();
+				System.out.println("Video palying in Mute");
+			}
+		}
+		
+		public void captions() throws InterruptedException
+		{
+			Thread.sleep(1000);
+			String sub_status = sub.getAttribute("aria-pressed");
+			if(sub_status == "true")
+			{
+				System.out.println("Caption is ON");
+				sub.click();
+			}
+			else if(sub_status == "false")
+			{
+				System.out.println("Caption is ON");
+				sub.click();
+			}
+		}
+		
 		public void clickLike()
 		{
 			likeButton.click();
@@ -76,16 +155,18 @@ public class ContentPage extends BasePage{
 			dislikeButton.click();
 		}
 		
-		public void addcmd()
+		public void addcmd() throws InterruptedException
 		{
 			addCmd.sendKeys("full entertainment..");
 			cancel.click();
+			Thread.sleep(1000);
 			addCmd.sendKeys("full entertainment.... Awesome!!");
 			submit.click();
 		}
 		
 		public void dltCmd() throws InterruptedException
 		{
+			Thread.sleep(1000);
 			menu.click();
 			dltOption.click();
 			Thread.sleep(1000);
