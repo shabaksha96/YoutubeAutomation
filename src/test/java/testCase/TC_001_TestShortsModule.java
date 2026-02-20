@@ -3,6 +3,10 @@ package testCase;
 import org.testng.annotations.Test;
 import pageObject.HomePage;
 
+import java.io.File;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 
@@ -80,6 +84,10 @@ public class TC_001_TestShortsModule extends BaseTest{
 		System.out.println("switching next video");
 		Thread.sleep(1000);
 		yt.next();
+		TakesScreenshot ss = ((TakesScreenshot)driver);
+		File snap = ss.getScreenshotAs(OutputType.FILE);
+		File dir = new File ("/Users/shabeerbaksha/SDET/YoutubeAutomation/SS/screenshots.png");
+		snap.renameTo(dir);
 		System.out.println("switching next video");
 		Thread.sleep(1000);
 		yt.next();
